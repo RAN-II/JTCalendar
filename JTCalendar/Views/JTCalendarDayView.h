@@ -16,8 +16,11 @@
 @property (nonatomic) NSDate *date;
 
 @property (nonatomic, readonly) UIView *circleView;
-@property (nonatomic, readonly) UIView *dotView;
+@property (nonatomic, readonly) UIView *dotLeftView;
+@property (nonatomic, readonly) UIView *dotMidView;
+@property (nonatomic, readonly) UIView *dotRightView;
 @property (nonatomic, readonly) UILabel *textLabel;
+@property (nonatomic) BOOL isTextAlignToTop;
 
 @property (nonatomic) CGFloat circleRatio;
 @property (nonatomic) CGFloat dotRatio;

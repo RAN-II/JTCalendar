@@ -134,6 +134,14 @@
     return [JTCalendarWeekView new];
 }
 
+- (UIView *)buildDayContentView {
+    if(_manager.delegate && [_manager.delegate respondsToSelector:@selector(calendarBuildDayContentView:)]){
+        return [_manager.delegate calendarBuildDayContentView:self.manager];
+    }
+    
+    return [UIView new];
+}
+
 #pragma mark - Week view
 
 - (UIView<JTCalendarDay> *)buildDayView
@@ -159,6 +167,12 @@
     if(_manager.delegate && [_manager.delegate respondsToSelector:@selector(calendar:didTouchDayView:)]){
         [_manager.delegate calendar:self.manager didTouchDayView:dayView];
     }
+}
+
+- (void)updateDayContentWithDate:(NSDate *)contentDate {
+//    if (_manager.settings.weekModeEnabled == isWeekMode)
+//        return;
+    [_manager.scrollManager.horizontalContentView updateContentWithDate:contentDate];
 }
 
 @end

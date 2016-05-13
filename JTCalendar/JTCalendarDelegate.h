@@ -88,6 +88,12 @@
  */
 - (UIView<JTCalendarWeek> *)calendarBuildWeekView:(JTCalendarManager *)calendar;
 
+/*!
+ * Provide a day content view.
+ * Return an nil by default.
+ */
+- (UIView *)calendarBuildDayContentView:(JTCalendarManager *)calendar;
+
 
 // Week view
 

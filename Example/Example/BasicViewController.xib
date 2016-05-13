@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BasicViewController">
             <connections>
                 <outlet property="calendarContentView" destination="V2D-jB-xad" id="wge-4T-tsc"/>
                 <outlet property="calendarContentViewHeight" destination="B5M-EU-dSr" id="L4b-pt-DqQ"/>
+                <outlet property="calendarHeightConstraint" destination="B5M-EU-dSr" id="C9I-0w-y3S"/>
                 <outlet property="calendarMenuView" destination="bUG-Um-eDs" id="VZf-Gd-DYg"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -27,7 +28,7 @@
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V2D-jB-xad" customClass="JTHorizontalCalendarView">
                     <rect key="frame" x="0.0" y="70" width="600" height="300"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" red="0.63921568630000003" green="0.71764705880000002" blue="0.81176470590000005" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="300" id="B5M-EU-dSr"/>
                     </constraints>
@@ -58,6 +59,13 @@
                         <action selector="didChangeModeTouch" destination="-1" eventType="touchUpInside" id="lNn-VU-bLm"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zkU-72-J01">
+                    <rect key="frame" x="277" y="400" width="46" height="30"/>
+                    <state key="normal" title="Button"/>
+                    <connections>
+                        <action selector="testAction:" destination="-1" eventType="touchUpInside" id="ZQR-6G-gVO"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
@@ -67,9 +75,11 @@
                 <constraint firstAttribute="trailing" secondItem="V2D-jB-xad" secondAttribute="trailing" id="ZUT-ce-Fo1"/>
                 <constraint firstItem="V2D-jB-xad" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="a1x-G4-3ng"/>
                 <constraint firstItem="ES5-rW-dqY" firstAttribute="top" secondItem="V2D-jB-xad" secondAttribute="bottom" constant="30" id="bzX-Jo-vxR"/>
+                <constraint firstItem="zkU-72-J01" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="dXl-BN-XJT"/>
                 <constraint firstItem="bUG-Um-eDs" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="20" id="jp6-Hu-86S"/>
                 <constraint firstAttribute="trailing" secondItem="ES5-rW-dqY" secondAttribute="trailing" constant="30" id="kDr-EG-qoe"/>
                 <constraint firstItem="Uhw-ef-kaS" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="30" id="l8j-MK-g6j"/>
+                <constraint firstItem="zkU-72-J01" firstAttribute="centerY" secondItem="Uhw-ef-kaS" secondAttribute="centerY" id="ohm-Rk-BqO"/>
                 <constraint firstItem="V2D-jB-xad" firstAttribute="top" secondItem="bUG-Um-eDs" secondAttribute="bottom" id="vea-aa-tOL"/>
             </constraints>
             <point key="canvasLocation" x="730" y="290"/>

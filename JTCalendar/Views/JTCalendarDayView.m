@@ -54,16 +54,34 @@
     }
     
     {
-        _dotView = [UIView new];
-        [self addSubview:_dotView];
+        _dotLeftView = [UIView new];
+        [self addSubview:_dotLeftView];
         
-        _dotView.backgroundColor = [UIColor redColor];
-        _dotView.hidden = YES;
+        _dotLeftView.backgroundColor = [UIColor redColor];
+        _dotLeftView.hidden = YES;
 
-        _dotView.layer.rasterizationScale = [UIScreen mainScreen].scale;
-        _dotView.layer.shouldRasterize = YES;
+        _dotLeftView.layer.rasterizationScale = [UIScreen mainScreen].scale;
+        _dotLeftView.layer.shouldRasterize = YES;
+
+        _dotMidView = [UIView new];
+        [self addSubview:_dotMidView];
+        
+        _dotMidView.backgroundColor = [UIColor greenColor];
+        _dotMidView.hidden = YES;
+        
+        _dotMidView.layer.rasterizationScale = [UIScreen mainScreen].scale;
+        _dotMidView.layer.shouldRasterize = YES;
+
+        _dotRightView = [UIView new];
+        [self addSubview:_dotRightView];
+
+        _dotRightView.backgroundColor = [UIColor blueColor];
+        _dotRightView.hidden = YES;
+
+        _dotRightView.layer.rasterizationScale = [UIScreen mainScreen].scale;
+        _dotRightView.layer.shouldRasterize = YES;
     }
-    
+
     {
         _textLabel = [UILabel new];
         [self addSubview:_textLabel];
@@ -83,7 +101,12 @@
 
 - (void)layoutSubviews
 {
-    _textLabel.frame = self.bounds;
+    if (_isTextAlignToTop) {
+        CGSize textSize = [_textLabel sizeThatFits:CGSizeMake(MAXFLOAT, MAXFLOAT)];
+        _textLabel.frame = CGRectMake(.0, 2., self.frame.size.width, textSize.height);
+    } else {
+        _textLabel.frame = self.bounds;
+    }
     
     CGFloat sizeCircle = MIN(self.frame.size.width, self.frame.size.height);
     CGFloat sizeDot = sizeCircle;
@@ -98,9 +121,21 @@
     _circleView.center = CGPointMake(self.frame.size.width / 2., self.frame.size.height / 2.);
     _circleView.layer.cornerRadius = sizeCircle / 2.;
     
-    _dotView.frame = CGRectMake(0, 0, sizeDot, sizeDot);
-    _dotView.center = CGPointMake(self.frame.size.width / 2., (self.frame.size.height / 2.) +sizeDot * 2.5);
-    _dotView.layer.cornerRadius = sizeDot / 2.;
+    CGFloat dotShift = self.frame.size.width / 4.;
+    CGFloat dotYCenter = _isTextAlignToTop ? CGRectGetMaxY(_textLabel.frame) +sizeDot : (self.frame.size.height / 2.) +sizeDot * 2.5;
+    
+    _dotLeftView.frame = CGRectMake(0, 0, sizeDot, sizeDot);
+    _dotLeftView.center = CGPointMake(dotShift, dotYCenter);
+    _dotLeftView.layer.cornerRadius = sizeDot / 2.;
+    
+    _dotMidView.frame = CGRectMake(0, 0, sizeDot, sizeDot);
+    _dotMidView.center = CGPointMake(self.frame.size.width / 2., dotYCenter);
+    _dotMidView.layer.cornerRadius = sizeDot / 2.;
+
+    _dotRightView.frame = CGRectMake(0, 0, sizeDot, sizeDot);
+    _dotRightView.center = CGPointMake(self.frame.size.width - dotShift, dotYCenter);
+    _dotRightView.layer.cornerRadius = sizeDot / 2.;
+
 }
 
 - (void)setDate:(NSDate *)date
@@ -110,6 +145,11 @@
     
     self->_date = date;
     [self reload];
+}
+
+- (void)setIsTextAlignToTop:(BOOL)isTextAlignToTop {
+    self->_isTextAlignToTop = isTextAlignToTop;
+//    [self reload];
 }
 
 - (void)reload

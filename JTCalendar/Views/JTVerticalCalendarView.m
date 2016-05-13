@@ -319,6 +319,10 @@ typedef NS_ENUM(NSInteger, JTCalendarPageMode) {
     }
 }
 
+- (void)updateContentWithDate:(NSDate *)contentDate {
+    [_centerView updateContentViewWithDate:contentDate];
+}
+
 - (void)setDate:(NSDate *)date
 {
     NSAssert(date != nil, @"date cannot be nil");

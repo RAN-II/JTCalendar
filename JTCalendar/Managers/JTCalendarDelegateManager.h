@@ -33,6 +33,7 @@
 
 - (UIView<JTCalendarWeekDay> *)buildWeekDayView;
 - (UIView<JTCalendarWeek> *)buildWeekView;
+- (UIView *)buildDayContentView;
 
 
 // Week view
@@ -44,5 +45,7 @@
 
 - (void)prepareDayView:(UIView<JTCalendarDay> *)dayView;
 - (void)didTouchDayView:(UIView<JTCalendarDay> *)dayView;
+
+- (void)updateDayContentWithDate:(NSDate *)contentDate;
 
 @end

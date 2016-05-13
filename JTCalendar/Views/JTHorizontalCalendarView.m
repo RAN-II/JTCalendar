@@ -319,6 +319,10 @@ typedef NS_ENUM(NSInteger, JTCalendarPageMode) {
     }
 }
 
+- (void)updateContentWithDate:(NSDate *)contentDate {
+    [_centerView updateContentViewWithDate:contentDate];
+}
+
 - (void)setDate:(NSDate *)date
 {
     NSAssert(date != nil, @"date cannot be nil");
@@ -368,8 +372,8 @@ typedef NS_ENUM(NSInteger, JTCalendarPageMode) {
 
 - (void)updatePageMode
 {
-    BOOL haveLeftPage = [_manager.delegateManager canDisplayPageWithDate:_leftView.date];
-    BOOL haveRightPage = [_manager.delegateManager canDisplayPageWithDate:_rightView.date];
+    BOOL haveLeftPage = !_centerView.dayContentView && [_manager.delegateManager canDisplayPageWithDate:_leftView.date];
+    BOOL haveRightPage = !_centerView.dayContentView && [_manager.delegateManager canDisplayPageWithDate:_rightView.date];
     
     if(haveLeftPage && haveRightPage){
         _pageMode = JTCalendarPageModeFull;
