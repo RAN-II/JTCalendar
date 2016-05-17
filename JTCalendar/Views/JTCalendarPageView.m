@@ -149,11 +149,11 @@
                 BOOL isNeedShift = [_manager.dateHelper date:view.startDate isEqualOrBefore:contentDate];
                 if (isActiveWeek) {
                     counter = 0;
-                    dayContentTop = view.frame.size.height * 2;
+                    dayContentTop = _weekDayView.frame.size.height + view.frame.size.height;
                 }
                 if (isNeedShift) {
                     CGRect frameRect = CGRectMake(isActiveWeek ? .0 : -view.frame.size.width - (_activeWeekIndex - counter) * view.frame.size.width * .5,
-                                                  isActiveWeek ? view.frame.size.height : view.frame.origin.y * .5,
+                                                  isActiveWeek ? _weekDayView.frame.size.height : view.frame.origin.y * .5,
                                                   view.frame.size.width,
                                                   view.frame.size.height
                                                   );
